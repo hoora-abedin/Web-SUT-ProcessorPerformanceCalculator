@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="icon.png"/>
+    <title>Processor Performance Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Processor Performance Calculator</h2>
+        <p class="description">This calculator computes the processor's performance based on instant values of metrics.</p>
+        
+        <div class="image-container">
+            <img src="processor.png" alt="Processor Image" class="processor-image">
+        </div>
+
+        <div class="inputs">
+            <div class="input-group">
+                <label for="instruction-count">Instruction Count:</label>
+                <input type="text" id="instruction-count" placeholder="example: 1000000">
+            </div>
+
+            <div class="input-group">
+                <label for="clock-cycle-time">Clock Cycle Time (ns):</label>
+                <input type="text" id="clock-cycle-time" placeholder="example: 3">
+            </div>
+
+            <div class="input-group">
+                <label for="parallelizable-portion">Parallelizable Portion:</label>
+                <input type="text" id="parallelizable-portion" placeholder="example: 0.3">
+            </div>
+
+            <div class="input-group">
+                <label for="processors">Number of Processors:</label>
+                <input type="text" id="processors" placeholder="example: 4">
+            </div>
+        </div>
+
+        <div class="outputs">
+            <div class="output-group">
+                <label><b>Clock Rate: (Hz)</b></label>
+                <formula id="result-clock-rate" evaluator="1 / (clockCycleTime * 1e-9)"></formula>
+            </div>
+
+            <div class="output-group">
+                <label><b>Execution Time: (ns)</b></label>
+                <formula id="result-execution-time" evaluator="instructionCount * clockCycleTime"></formula>
+            </div>
+
+            <div class="output-group">
+                <label><b>Speedup (Amdahl’s Law):</b></label>
+                <formula id="result-speedup" evaluator="1 / ((1 - parallelizablePortion) + (parallelizablePortion / processors))"></formula>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
